@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { signOut } from "firebase/auth";
-// import { useAuthState } from "react-firebase-hooks/auth";
-// import auth from "../../firebase.init";
+import { signOut } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const Navbar = () => {
-//   const [user] = useAuthState(auth);
-//   const handleSignOut = () => {
-//     signOut(auth);
-//   };
+  const [user] = useAuthState(auth);
+  const handleSignOut = () => {
+    signOut(auth);
+  };
   return (
     <div>
       <div className="navbar bg-base-100  flex justify-between">
@@ -43,26 +43,27 @@ const Navbar = () => {
                     Home
                   </Link>
                 </li>
-                
 
-                
-                {/* <li>
+                <li>
                   {user ? (
                     <button onClick={handleSignOut} className="btn btn-ghost">
                       Logout
                     </button>
                   ) : (
-                    <Link className="block h-12 leading-[3rem] text-[13px] border-b-4 border-transparent hover:text-primary hover:border-current " to="/login">Login</Link>
+                    <Link
+                      className="block h-12 font-bold leading-[3rem] text-[13px] border-b-4 border-transparent hover:text-primary hover:border-current "
+                      to="/login"
+                    >
+                      Login
+                    </Link>
                   )}
-                </li> */}
+                </li>
               </>
             </ul>
           </div>
-         
         </div>
         <div className="navbar-center hidden lg:flex  ">
           <ul className="menu menu-horizontal p-0 px-16 lg:space-x-4">
-          
             <>
               <Link
                 to="/"
@@ -71,32 +72,36 @@ const Navbar = () => {
                 Home
               </Link>
 
-          
-              
-
-              
-              {/* {user ? (
-                <button
-                  onClick={handleSignOut}
-                  className="block h-12 leading-[3rem] border-b-4 border-transparent hover:text-primary hover:border-current text-[13px] "
-                >
-                  Logout
-                </button>
+              {user ? (
+                <>
+                  <button
+                    onClick={handleSignOut}
+                    className="block h-12 leading-[3rem] font-bold border-b-4 border-transparent hover:text-primary hover:border-current text-[14px] "
+                  >
+                    Logout
+                  </button>
+                </>
               ) : (
                 <Link to="/login">
-                  <button className="block h-12 leading-[3rem] text-[13px] border-b-4 border-transparent hover:text-primary hover:border-current ">
+                  <button className="block h-12 font-bold leading-[3rem] text-[14px] border-b-4 border-transparent hover:text-primary hover:border-current ">
                     Login/Register
                   </button>
                 </Link>
-              )} */}
-             
+              )}
+              {user?.photoURL && (
+                <>
+                  <div className="avatar online mt-1">
+                    <div className="w-10 h-10  rounded-full">
+                      <img src={user?.photoURL} />
+                    </div>
+                  </div>
+                </>
+              )}
             </>
-           
           </ul>
         </div>
       </div>
     </div>
-   
   );
 };
 
