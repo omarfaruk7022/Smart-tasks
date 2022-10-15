@@ -66,7 +66,7 @@ const Home = () => {
       });
       setReload(true);
       
-  },[]);
+  });
 
   useEffect(() => {
     fetch(`http://localhost:5000/completedTask/${email}`)
@@ -76,7 +76,7 @@ const Home = () => {
       });
       setReload(true);
       
-  },[]);
+  });
   // const {
   //   data: tasks,
   //   isLoading,
