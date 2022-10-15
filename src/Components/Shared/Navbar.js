@@ -9,6 +9,7 @@ const Navbar = () => {
   const handleSignOut = () => {
     signOut(auth);
   };
+  console.log(user)
   return (
     <div>
       <div className="navbar bg-base-100  flex justify-between">
@@ -88,6 +89,11 @@ const Navbar = () => {
                   </button>
                 </Link>
               )}
+               {user?.displayName && (
+              <>
+                <p className="text-[11px] mt-3.5 font-bold">{user?.displayName}</p>
+              </>
+              )}
               {user?.photoURL && (
                 <>
                   <div className="avatar online mt-1">
@@ -97,6 +103,7 @@ const Navbar = () => {
                   </div>
                 </>
               )}
+             
             </>
           </ul>
         </div>

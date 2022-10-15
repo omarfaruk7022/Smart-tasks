@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
@@ -9,6 +9,9 @@ import auth from "../../firebase.init";
 const Home = () => {
   const [user] = useAuthState(auth);
   const email = user?.email;
+  const [reload, setReload] = useState(false);
+  const [tasks, setTasks] = useState();
+  const [completedTasks, setCompletedTasks] = useState();
   const {
     register,
     formState: { errors },
@@ -54,41 +57,85 @@ const Home = () => {
         swal("Yayy", "Your task completed Successfully", "success");
       });
   };
-  const {
-    data: tasks,
-    isLoading,
-    refetch,
-  } = useQuery("tasks", () =>
-    fetch(`http://localhost:5000/addTask/${email}`, {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        return data;
-      })
-  );
 
-  const { data: completedTasks } = useQuery("completedTasks", () =>
-    fetch(`http://localhost:5000/completedTask/${email}`, {
-      method: "GET",
-    })
+  useEffect(() => {
+    fetch(`http://localhost:5000/addTask/${email}`)
       .then((res) => res.json())
       .then((data) => {
-        return data;
-      })
-  );
-  refetch();
-  const handleDelete = (id) => {
-    fetch(`http://localhost:5000/completedTask/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        swal("Yayy", "Your task deleted Successfully", "success");
+        setTasks(data);
       });
+      setReload(true);
+      
+  },[]);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/completedTask/${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCompletedTasks(data);
+      });
+      setReload(true);
+      
+  },[]);
+  // const {
+  //   data: tasks,
+  //   isLoading,
+  //   refetch,
+  // } = useQuery("tasks", () =>
+  //   fetch(`http://localhost:5000/addTask/${email}`, {
+  //     method: "GET",
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       refetch();
+  //       return data;
+  //     })
+  // );
+
+  // const { data: completedTasks } = useQuery("completedTasks", () =>
+  //   fetch(`http://localhost:5000/completedTask/${email}`, {
+  //     method: "GET",
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       refetch();
+  //       return data;
+  //     })
+  // );
+
+  const handleDelete = (id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this  file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch(`http://localhost:5000/completedTask/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            swal("Yayy", "Company Deleted Successfully", "success");
+          });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
   };
-  refetch();
+  // const handleDelete = (id) => {
+  //   fetch(`http://localhost:5000/completedTask/${id}`, {
+  //     method: "DELETE",
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       swal("Yayy", "Your task deleted Successfully", "success");
+  //     });
+  // };
+
   return (
     <div>
       <div className="dropdown flex">
