@@ -5,13 +5,15 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import swal from "sweetalert";
 import auth from "../../firebase.init";
+import Loader from "../Shared/Loader";
+import CompletedTasks from "./CompletedTasks";
 
 const Home = () => {
   const [user] = useAuthState(auth);
   const email = user?.email;
-  const [reload, setReload] = useState(false);
-  const [tasks, setTasks] = useState();
-  const [completedTasks, setCompletedTasks] = useState();
+  const [reload, setReload] = useState(true);
+  // const [tasks, setTasks] = useState();
+  // const [completedTasks, setCompletedTasks] = useState();
   const {
     register,
     formState: { errors },
@@ -28,7 +30,7 @@ const Home = () => {
     };
     console.log(inputData);
     if (addingTask) {
-      fetch("https://smart-task.onrender.com/addTask", {
+      fetch("https://smart-tasks-server.vercel.app/addTask", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -44,7 +46,7 @@ const Home = () => {
     e.target.reset();
   };
   const handleComplete = (id, task) => {
-    fetch(`https://smart-task.onrender.com/completedTask/${id}`, {
+    fetch(`https://smart-tasks-server.vercel.app/completedTask/${id}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -58,73 +60,66 @@ const Home = () => {
       });
   };
 
-  useEffect(() => {
-    fetch(`https://smart-task.onrender.com/addTask/${email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setTasks(data);
-      });
-    setReload(true);
-  });
-
-  useEffect(() => {
-    fetch(`https://smart-task.onrender.com/completedTask/${email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCompletedTasks(data);
-      });
-    setReload(true);
-  });
-  // const {
-  //   data: tasks,
-  //   isLoading,
-  //   refetch,
-  // } = useQuery("tasks", () =>
-  //   fetch(`https://smart-task.onrender.com/addTask/${email}`, {
-  //     method: "GET",
-  //   })
+  // useEffect(() => {
+  //   fetch(`https://smart-tasks-server.vercel.app/addTask/${email}`)
   //     .then((res) => res.json())
   //     .then((data) => {
-  //       refetch();
-  //       return data;
-  //     })
-  // );
+  //       setTasks(data);
+  //       setReload(!reload);
+  //     });
+  // },[email]);
 
-  // const { data: completedTasks } = useQuery("completedTasks", () =>
-  //   fetch(`https://smart-task.onrender.com/completedTask/${email}`, {
-  //     method: "GET",
-  //   })
+  // useEffect(() => {
+  //   fetch(`https://smart-tasks-server.vercel.app/completedTask/${email}`)
   //     .then((res) => res.json())
   //     .then((data) => {
-  //       refetch();
-  //       return data;
-  //     })
-  // );
+  //       setCompletedTasks(data);
+  //       setReload(!reload);
+  //     });
+  // },[email]);
+  const {
+    data: tasks,
+    isLoading,
+    refetch,
+  } = useQuery("tasks", () =>
+    fetch(`https://smart-tasks-server.vercel.app/addTask/${email}`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        return data;
+      })
+  );
 
-  const handleDelete = (id) => {
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this  file!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        fetch(`https://smart-task.onrender.com/completedTask/${id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            swal("Yayy", "Company Deleted Successfully", "success");
-          });
-      } else {
-        swal("Your imaginary file is safe!");
-      }
-    });
-  };
+  if (isLoading) {
+    return <Loader />;
+  }
+  refetch();
+
   // const handleDelete = (id) => {
-  //   fetch(`https://smart-task.onrender.com/completedTask/${id}`, {
+  //   swal({
+  //     title: "Are you sure?",
+  //     text: "Once deleted, you will not be able to recover this  file!",
+  //     icon: "warning",
+  //     buttons: true,
+  //     dangerMode: true,
+  //   }).then((willDelete) => {
+  //     if (willDelete) {
+  //       fetch(`https://smart-tasks-server.vercel.app/completedTask/${id}`, {
+  //         method: "DELETE",
+  //       })
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //           console.log(data);
+  //           swal("Yayy", "Company Deleted Successfully", "success");
+  //         });
+  //     } else {
+  //       swal("Your imaginary file is safe!");
+  //     }
+  //   });
+  // };
+  // const handleDelete = (id) => {
+  //   fetch(`https://smart-tasks-server.vercel.app/completedTask/${id}`, {
   //     method: "DELETE",
   //   })
   //     .then((res) => res.json())
@@ -201,7 +196,8 @@ const Home = () => {
         ))}
       </div>
       <div>
-        <div className="card w-96 bg-base-100 drop-shadow-2xl ">
+        <CompletedTasks />
+        {/* <div className="card w-96 bg-base-100 drop-shadow-2xl ">
           <div className="card-body">
             {completedTasks?.map((completedTask) => (
               <h1 className="flex ">
@@ -231,7 +227,7 @@ const Home = () => {
               </h1>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
