@@ -9,7 +9,7 @@ const Navbar = () => {
   const handleSignOut = () => {
     signOut(auth);
   };
-  console.log(user)
+  console.log(user);
   return (
     <div>
       <div className="navbar bg-base-100  flex justify-between">
@@ -63,8 +63,8 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
-        <div className="navbar-center hidden lg:flex  ">
-          <ul className="menu menu-horizontal p-0 px-16 lg:space-x-4">
+        <div className="navbar-start hidden lg:flex  ">
+          <ul className="menu menu-horizontal p-0 px-16  lg:space-x-4 ">
             <>
               <Link
                 to="/"
@@ -89,24 +89,44 @@ const Navbar = () => {
                   </button>
                 </Link>
               )}
-               {user?.displayName && (
-              <>
-                <p className="text-[11px] mt-3.5 font-bold">{user?.displayName}</p>
-              </>
-              )}
-              {user?.photoURL && (
-                <>
-                  <div className="avatar online mt-1">
-                    <div className="w-10 h-10  rounded-full">
-                      <img src={user?.photoURL} />
-                    </div>
-                  </div>
-                </>
-              )}
-             
             </>
           </ul>
         </div>
+        {user?.displayName && (
+          <>
+            <p className="text-[11px] mt-3.5 font-bold">{user?.displayName}</p>
+          </>
+        )}
+        {user && !user?.displayName && <>
+        <h1 className="text-[11px] mt-3.5 font-bold">Unknown User</h1>
+        </>}
+        {user?.photoURL && (
+          <>
+            <div className="avatar online mt-1">
+              <div className="w-10 h-10  rounded-full">
+                <img src={user?.photoURL} />
+              </div>
+            </div>
+          </>
+        )}
+        {user && !user?.photoURL && (
+          <>
+            <div class="overflow-hidden relative w-10 h-10 bg-gray-300 rounded-full dark:bg-gray-600">
+              <svg
+                class="absolute -left-1 w-12 h-12 text-gray-700"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
