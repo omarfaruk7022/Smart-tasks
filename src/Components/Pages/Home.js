@@ -28,7 +28,7 @@ const Home = () => {
     };
     console.log(inputData);
     if (addingTask) {
-      fetch("http://localhost:5000/addTask", {
+      fetch("https://smart-task.onrender.com/addTask", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -44,7 +44,7 @@ const Home = () => {
     e.target.reset();
   };
   const handleComplete = (id, task) => {
-    fetch(`http://localhost:5000/completedTask/${id}`, {
+    fetch(`https://smart-task.onrender.com/completedTask/${id}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -59,30 +59,28 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/addTask/${email}`)
+    fetch(`https://smart-task.onrender.com/addTask/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setTasks(data);
       });
-      setReload(true);
-      
+    setReload(true);
   });
 
   useEffect(() => {
-    fetch(`http://localhost:5000/completedTask/${email}`)
+    fetch(`https://smart-task.onrender.com/completedTask/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setCompletedTasks(data);
       });
-      setReload(true);
-      
+    setReload(true);
   });
   // const {
   //   data: tasks,
   //   isLoading,
   //   refetch,
   // } = useQuery("tasks", () =>
-  //   fetch(`http://localhost:5000/addTask/${email}`, {
+  //   fetch(`https://smart-task.onrender.com/addTask/${email}`, {
   //     method: "GET",
   //   })
   //     .then((res) => res.json())
@@ -93,7 +91,7 @@ const Home = () => {
   // );
 
   // const { data: completedTasks } = useQuery("completedTasks", () =>
-  //   fetch(`http://localhost:5000/completedTask/${email}`, {
+  //   fetch(`https://smart-task.onrender.com/completedTask/${email}`, {
   //     method: "GET",
   //   })
   //     .then((res) => res.json())
@@ -112,7 +110,7 @@ const Home = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/completedTask/${id}`, {
+        fetch(`https://smart-task.onrender.com/completedTask/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -126,7 +124,7 @@ const Home = () => {
     });
   };
   // const handleDelete = (id) => {
-  //   fetch(`http://localhost:5000/completedTask/${id}`, {
+  //   fetch(`https://smart-task.onrender.com/completedTask/${id}`, {
   //     method: "DELETE",
   //   })
   //     .then((res) => res.json())
