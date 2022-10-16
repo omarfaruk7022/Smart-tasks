@@ -13,7 +13,7 @@ const CompletedTasks = () => {
     isLoading,
     refetch,
   } = useQuery("completedTasks", () =>
-    fetch(` http://localhost:5000/completedTask/${email}`, {
+    fetch(` https://smart-task.onrender.com/completedTask/${email}`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -35,7 +35,7 @@ const CompletedTasks = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(` http://localhost:5000/completedTask/${id}`, {
+        fetch(` https://smart-task.onrender.com/completedTask/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -54,17 +54,17 @@ const CompletedTasks = () => {
             <>
               <h1 className="flex ">
                 <span className="text-green-500 p-5">
-                <td className=" py-2  whitespace-nowrap">
-                <div className="group">
-                  <p>
-                    {completedTask?.addingTask.slice(0, 20)}
-                    <span>.......</span>
-                  </p>
-                  <span className="absolute z-50 hidden px-6 py-2 -mt-16 text-center text-black  bg-base-100 border  rounded tooltip-text group-hover:block">
-                    {completedTask?.addingTask.slice()}
-                  </span>
-                </div>
-              </td>
+                  <td className=" py-2  whitespace-nowrap">
+                    <div className="group">
+                      <p>
+                        {completedTask?.addingTask.slice(0, 20)}
+                        <span>.......</span>
+                      </p>
+                      <span className="absolute z-50 hidden px-6 py-2 -mt-16 text-center text-black  bg-base-100 border  rounded tooltip-text group-hover:block">
+                        {completedTask?.addingTask.slice()}
+                      </span>
+                    </div>
+                  </td>
                 </span>
                 <p className="text-[12px] lg:mt-1.5  lg:mr-2 p-5">
                   {completedTask?.taskTime}, {completedTask?.taskDate}

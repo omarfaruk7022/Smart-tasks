@@ -38,7 +38,7 @@ const Home = () => {
     };
     console.log(inputData);
     if (addingTask) {
-      fetch(" http://localhost:5000/addTask", {
+      fetch(" https://smart-task.onrender.com/addTask", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -54,7 +54,7 @@ const Home = () => {
     e.target.reset();
   };
   const handleComplete = (id, task) => {
-    fetch(` http://localhost:5000/completedTask/${id}`, {
+    fetch(` https://smart-task.onrender.com/completedTask/${id}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -73,7 +73,7 @@ const Home = () => {
     isLoading,
     refetch,
   } = useQuery("tasks", () =>
-    fetch(` http://localhost:5000/addTask/${email}`, {
+    fetch(` https://smart-task.onrender.com/addTask/${email}`, {
       method: "GET",
     })
       .then((res) => res.json())
