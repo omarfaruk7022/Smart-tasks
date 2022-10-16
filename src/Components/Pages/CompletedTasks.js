@@ -66,7 +66,7 @@ const CompletedTasks = () => {
                     </div>
                   </td>
                 </span>
-                <p className="text-[12px] lg:mt-1.5  lg:mr-2 p-5">
+                <p className="text-[12px] lg:mt-4  lg:mr-2 p-5">
                   {completedTask?.taskTime}, {completedTask?.taskDate}
                 </p>
 
