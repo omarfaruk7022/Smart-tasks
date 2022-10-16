@@ -13,9 +13,12 @@ const CompletedTasks = () => {
     isLoading,
     refetch,
   } = useQuery("completedTasks", () =>
-    fetch(` https://smart-task.onrender.com/completedTask/${email}`, {
-      method: "GET",
-    })
+    fetch(
+      ` https://smart-tasks-server-production.up.railway.app/completedTask/${email}`,
+      {
+        method: "GET",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         return data;
@@ -35,9 +38,12 @@ const CompletedTasks = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(` https://smart-task.onrender.com/completedTask/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          ` https://smart-tasks-server-production.up.railway.app/completedTask/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
@@ -56,14 +62,14 @@ const CompletedTasks = () => {
                 <span className="text-green-500 p-5">
                   <td className=" py-2  whitespace-nowrap">
                     <div className="group">
-                    <p>
-                      {completedTask?.addingTask.slice(0, 20)}
-                      {completedTask?.addingTask.length > 20 && (
-                        <>
-                          <span>......</span>
-                        </>
-                      )}
-                    </p>
+                      <p>
+                        {completedTask?.addingTask.slice(0, 20)}
+                        {completedTask?.addingTask.length > 20 && (
+                          <>
+                            <span>......</span>
+                          </>
+                        )}
+                      </p>
                       <span className="absolute z-50 hidden px-6 py-2 -mt-16 text-center text-black  bg-base-100 border  rounded tooltip-text group-hover:block">
                         {completedTask?.addingTask.slice()}
                       </span>
