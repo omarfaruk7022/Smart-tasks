@@ -107,7 +107,7 @@ const Home = () => {
   // };
 
   return (
-    <div className="">
+    <div className="lg:px-12">
       <div className="dropdown flex">
         <label tabIndex={0} className="hover:text-blue-500">
           <span className="text-xl  hover:rounded-full ml-5">+</span>{" "}
