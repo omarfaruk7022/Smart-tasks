@@ -3,7 +3,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { format } from "date-fns";
-import { useParams } from "react-router-dom";
 import swal from "sweetalert";
 import auth from "../../firebase.init";
 import Loader from "../Shared/Loader";
@@ -87,6 +86,10 @@ const Home = () => {
   }
   refetch();
 
+  const handleEdit = (id) => {
+    console.log("");
+  };
+
   return (
     <div className="">
       <div className="dropdown flex">
@@ -133,12 +136,11 @@ const Home = () => {
           </form>
         </ul>
       </div>
-      <div className="w-96 bg-base-200 drop-shadow-2xl">
-        
+      <div className="w-96 bg-base-200 drop-shadow-2xl mt-5">
         {tasks?.map((task) => (
           <>
             <div className="flex ">
-            <button onClick={() => handleComplete(task?._id, task)}>
+              <button onClick={() => handleComplete(task?._id, task)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -154,19 +156,16 @@ const Home = () => {
                   />
                 </svg>
               </button>
-              <span className="text-blue-500 mt-3">
+              <span className="text-gray-500 mt-3">
                 <td className=" py-2  whitespace-nowrap">
                   <div className="group">
                     <p>
                       {task?.addingTask.slice(0, 20)}
-                      {
-                        task?.addingTask.length > 20 && (
-                           <>
-                           <span>......</span>
-                           </>
-                        )
-                        
-                      }
+                      {task?.addingTask.length > 20 && (
+                        <>
+                          <span>......</span>
+                        </>
+                      )}
                     </p>
                     <span className="absolute z-50 hidden px-6 py-2 -mt-16 text-center text-black  bg-base-100 border  rounded tooltip-text group-hover:block">
                       {task?.addingTask.slice()}
@@ -178,24 +177,44 @@ const Home = () => {
                 {task?.taskTime}, {task?.taskDate}
               </p>
 
+              {/* <input type="checkbox" id="my-modal-6" className="modal-toggle" />
+              <div className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                  <div className="modal-action">
+                    <button
+                      className="hover:text-green-400 "
+                      onClick={() => handleEdit(task?._id)}
+                    >
+                      +
+                    </button>
+                    <div className="modal-action">
+                      <label htmlFor="my-modal-6" className="btn">
+                        -
+                      </label>
+                    </div>{" "}
+                  </div>
+                </div>
+              </div> */}
               <button
-                // onClick={() => handleDelete(completedTask?._id)}
                 className="ml-auto p-5"
+                onClick={() => handleEdit(task?._id)}
               >
+                {/* <label htmlFor="my-modal-6" className=" modal-button"> */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-5 h-5 text-red-400  hover:scale-125 ease-out duration-200 ml-auto"
+                  class="w-5 h-5 text-blue-600  hover:scale-125 ease-out duration-200 ml-auto"
                 >
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
                   />
                 </svg>
+                {/* </label> */}
               </button>
             </div>
           </>

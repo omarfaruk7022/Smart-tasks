@@ -56,10 +56,14 @@ const CompletedTasks = () => {
                 <span className="text-green-500 p-5">
                   <td className=" py-2  whitespace-nowrap">
                     <div className="group">
-                      <p>
-                        {completedTask?.addingTask.slice(0, 20)}
-                        <span>.......</span>
-                      </p>
+                    <p>
+                      {completedTask?.addingTask.slice(0, 20)}
+                      {completedTask?.addingTask.length > 20 && (
+                        <>
+                          <span>......</span>
+                        </>
+                      )}
+                    </p>
                       <span className="absolute z-50 hidden px-6 py-2 -mt-16 text-center text-black  bg-base-100 border  rounded tooltip-text group-hover:block">
                         {completedTask?.addingTask.slice()}
                       </span>
