@@ -48,16 +48,25 @@ const CompletedTasks = () => {
   };
   return (
     <div>
-      <div className=" w-96 bg-base-100 drop-shadow-2xl ">
+      <div className="w-96 bg-base-100 drop-shadow-2xl ">
         <div className="">
-       
           {completedTasks?.map((completedTask) => (
             <>
               <h1 className="flex ">
                 <span className="text-green-500 p-5">
-                  {completedTask?.addingTask}
+                <td className=" py-2  whitespace-nowrap">
+                <div className="group">
+                  <p>
+                    {completedTask?.addingTask.slice(0, 20)}
+                    <span>.......</span>
+                  </p>
+                  <span className="absolute z-50 hidden px-6 py-2 -mt-16 text-center text-black  bg-base-100 border  rounded tooltip-text group-hover:block">
+                    {completedTask?.addingTask.slice()}
+                  </span>
+                </div>
+              </td>
                 </span>
-                <p className="text-[12px] lg:mt-1.5 ml-auto lg:mr-2 p-5">
+                <p className="text-[12px] lg:mt-1.5  lg:mr-2 p-5">
                   {completedTask?.taskTime}, {completedTask?.taskDate}
                 </p>
 
@@ -71,7 +80,7 @@ const CompletedTasks = () => {
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="w-5 h-5 text-red-400 mx-2 hover:scale-125 ease-out duration-200 ml-auto"
+                    class="w-5 h-5 text-red-400  hover:scale-125 ease-out duration-200 ml-auto"
                   >
                     <path
                       stroke-linecap="round"

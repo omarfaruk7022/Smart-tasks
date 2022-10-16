@@ -133,8 +133,7 @@ const Home = () => {
           </form>
         </ul>
       </div>
-      <div className="mt-16 grid lg:grid-cols-3 grid-cols-1">
-       
+      <div className="mt-16 grid lg:grid-cols-3 ">
         {tasks?.map((task) => (
           <>
             <h1 className="flex m-5">
@@ -154,10 +153,17 @@ const Home = () => {
                   />
                 </svg>
               </button>
-              {task?.addingTask}
-              <p className="text-[12px] ml-12 mt-1.5">
-                {task?.taskTime}, {task?.taskDate}
-              </p>
+              <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
+                <div className="group">
+                  <p>
+                    {task?.addingTask.slice(0, 50)}
+                    <span>.......</span>
+                  </p>
+                  <span className="absolute z-50 hidden px-6 py-2 -mt-16 text-center text-black  bg-base-100 border  rounded tooltip-text group-hover:block">
+                    {task?.addingTask.slice()}
+                  </span>
+                </div>
+              </td>
             </h1>
           </>
         ))}
