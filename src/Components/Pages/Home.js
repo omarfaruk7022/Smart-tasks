@@ -92,19 +92,19 @@ const Home = () => {
   }
   refetch();
 
-  // const handleEdit = (e) => {
-  //   if (e.target.task.value) {
-  //     fetch(" https://smart-tasks-server-production.up.railway.app/addTask", {
-  //       method: "PATCH",
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //         swal("Yayy", "Company Added Successfully", "success");
-  //       });
-  //   }
-  //   e.target.reset();
-  // };
+  const handleEdit = (e) => {
+    if (e.target.task.value) {
+      fetch(" https://smart-tasks-server-production.up.railway.app/addTask", {
+        method: "PATCH",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          swal("Yayy", "Company Added Successfully", "success");
+        });
+    }
+    e.target.reset();
+  };
 
   return (
     <div className="lg:px-12">
@@ -212,31 +212,25 @@ const Home = () => {
                 </div>
               </div> */}
               <div className="dropdown flex">
-                {/* <label className="hover:text-blue-500">
-                  <span className="text-xl  hover:rounded-full ml-5">+</span>{" "}
-                  <span className="cursor-pointer  hover:text-blue-500">
-                    Add a task
-                  </span>
-                </label> */}
-                  {/* <label htmlFor="my-modal-6" className=" modal-button"> */}
-                {/* <button tabIndex={0} className="ml-auto p-5">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5 text-blue-600  hover:scale-125 ease-out duration-200 ml-auto"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                    />
-                  </svg>
-                </button> */}
-                  {/* </label> */}
-                {/* <ul
+                <button tabIndex={0} className="ml-auto p-5">
+                  <label htmlFor="my-modal-6" className=" modal-button">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-5 h-5 text-blue-600  hover:scale-125 ease-out duration-200 ml-auto"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                      />
+                    </svg>
+                  </label>
+                </button>
+                <ul
                   tabIndex={0}
                   className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
                 >
@@ -271,7 +265,7 @@ const Home = () => {
                       </button>
                     </div>
                   </form>
-                </ul> */}
+                </ul>
               </div>
             </div>
           </>
