@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import swal from "sweetalert";
 import auth from "../../firebase.init";
 import Loader from "../Shared/Loader";
+import { BsCheck2Circle } from "react-icons/bs";
 
 const CompletedTasks = () => {
   const [user] = useAuthState(auth);
@@ -59,7 +60,12 @@ const CompletedTasks = () => {
           {completedTasks?.map((completedTask) => (
             <>
               <h1 className="flex ">
-                <span className="text-green-500 p-5">
+                <div className="tooltip text-green-400 text-[25px] flex items-center p-2" data-tip="Completed">
+                 
+                    <BsCheck2Circle />
+             
+                </div>
+                <span className=" p-5">
                   <td className=" py-2  whitespace-nowrap">
                     <div className="group">
                       <p>
