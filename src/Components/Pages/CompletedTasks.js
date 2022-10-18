@@ -79,7 +79,7 @@ const CompletedTasks = () => {
                           </>
                         )}
                       </p>
-                      <span className="absolute z-50 hidden  py-2 -mt-16 text-center text-black  bg-base-100 border  rounded tooltip-text group-hover:block">
+                      <span className="absolute z-50 hidden  px-1 -mt-16 text-center text-black  bg-base-100 border  rounded tooltip-text group-hover:block">
                         {completedTask?.addingTask.slice()}
                       </span>
                     </div>
