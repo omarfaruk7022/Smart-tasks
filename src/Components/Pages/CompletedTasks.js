@@ -14,12 +14,9 @@ const CompletedTasks = () => {
     isLoading,
     refetch,
   } = useQuery("completedTasks", () =>
-    fetch(
-      ` https://smart-tasks-server-production.up.railway.app/completedTask/${email}`,
-      {
-        method: "GET",
-      }
-    )
+    fetch(` http://localhost:5000/completedTask/${email}`, {
+      method: "GET",
+    })
       .then((res) => res.json())
       .then((data) => {
         return data;
@@ -39,12 +36,9 @@ const CompletedTasks = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(
-          ` https://smart-tasks-server-production.up.railway.app/completedTask/${id}`,
-          {
-            method: "DELETE",
-          }
-        )
+        fetch(` http://localhost:5000/completedTask/${id}`, {
+          method: "DELETE",
+        })
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
@@ -53,17 +47,19 @@ const CompletedTasks = () => {
       }
     });
   };
+  console.log(completedTasks);
   return (
-    <div>
-      <div className="w-96 bg-base-100 drop-shadow-2xl ">
+    <div className="mt-12">
+      <div className=" bg-base-100 drop-shadow-2xl ">
         <div className="">
           {completedTasks?.map((completedTask) => (
             <>
               <h1 className="flex ">
-                <div className="tooltip text-green-400 text-[25px] flex items-center p-2" data-tip="Completed">
-                 
-                    <BsCheck2Circle />
-             
+                <div
+                  className="tooltip text-green-400 text-[25px] flex items-center p-2"
+                  data-tip="Completed"
+                >
+                  <BsCheck2Circle />
                 </div>
                 <span className=" p-5">
                   <td className=" py-2  whitespace-nowrap">
