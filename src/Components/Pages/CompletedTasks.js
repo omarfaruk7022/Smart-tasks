@@ -56,7 +56,7 @@ const CompletedTasks = () => {
   console.log(completedTasks);
   return (
     <div className="mt-12">
-      <div className=" bg-base-100 drop-shadow-2xl ">
+      <div className="bg-base-100 drop-shadow-2xl ">
         <div className="">
           {completedTasks?.map((completedTask) => (
             <>
@@ -78,7 +78,7 @@ const CompletedTasks = () => {
                           </>
                         )}
                       </p>
-                      <span className="absolute z-50 hidden px-6 py-2 -mt-16 text-center text-black  bg-base-100 border  rounded tooltip-text group-hover:block">
+                      <span className="absolute z-50 hidden  py-2 -mt-16 text-center text-black  bg-base-100 border  rounded tooltip-text group-hover:block">
                         {completedTask?.addingTask.slice()}
                       </span>
                     </div>

@@ -107,7 +107,7 @@ const Home = () => {
   };
 
   return (
-    <div className="grid lg:grid-cols-4">
+    <div className="grid lg:grid-cols-4 grid-cols-1">
       <div className="lg:px-12 sm:px-0">
         <div className="dropdown flex">
           <label tabIndex={0} className="hover:text-blue-500">
@@ -118,7 +118,7 @@ const Home = () => {
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box "
+            className="dropdown-content menu  shadow bg-base-100 rounded-box "
           >
             <form onSubmit={handleCorrect}>
               <div class="relative z-0 mb-6 w-full group flex">
@@ -153,7 +153,7 @@ const Home = () => {
             </form>
           </ul>
         </div>
-        <div className=" bg-base-200 drop-shadow-2xl mt-5">
+        <div className="bg-base-200 drop-shadow-2xl mt-5 ">
           {tasks?.map((task) => (
             <>
               <div className="flex ">
@@ -238,9 +238,9 @@ const Home = () => {
           ))}
         </div>
         <div>
-          <CompletedTasks />
         </div>
       </div>
+          <CompletedTasks />
     </div>
   );
 };

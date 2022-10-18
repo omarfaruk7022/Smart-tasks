@@ -28,7 +28,7 @@ const EditTask = (task) => {
   };
   return (
     <div>
-      <div className="dropdown mt-5 ">
+      <div className="dropdown mt-5">
         <label tabIndex={0} className="hover:text-blue-500">
           {/* <span className="text-xl  hover:rounded-full ml-5">+</span>{" "}
           <span className="cursor-pointer  hover:text-blue-500">Edit</span> */}
