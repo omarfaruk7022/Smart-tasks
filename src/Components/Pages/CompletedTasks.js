@@ -53,10 +53,10 @@ const CompletedTasks = () => {
       }
     });
   };
-  console.log(completedTasks);
+  const total = completedTasks.length;
   return (
     <div className="mt-7">
-      <h1 className="text-green-400 text-center text-xl my-2">Completed</h1>
+      <h1 className="text-green-400 text-center text-xl my-2">Completed ({total})</h1>
       <div className="bg-base-100 drop-shadow-2xl ">
         <div className="">
           {completedTasks?.map((completedTask) => (

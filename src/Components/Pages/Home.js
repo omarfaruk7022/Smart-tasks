@@ -92,20 +92,20 @@ const Home = () => {
   }
   refetch();
 
-  const handleEdit = (e) => {
-    if (e.target.task.value) {
-      fetch(" https://smart-tasks-server-production.up.railway.app/addTask", {
-        method: "PATCH",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          swal("Yayy", "Company Added Successfully", "success");
-        });
-    }
-    e.target.reset();
-  };
-
+  // const handleEdit = (e) => {
+  //   if (e.target.task.value) {
+  //     fetch(" https://smart-tasks-server-production.up.railway.app/addTask", {
+  //       method: "PATCH",
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         swal("Yayy", "Company Added Successfully", "success");
+  //       });
+  //   }
+  //   e.target.reset();
+  // };
+  const total = tasks?.length;
   return (
     <div>
       <div className="grid lg:grid-cols-4 grid-cols-1 lg:px-12 lg:gap-5">
@@ -155,7 +155,9 @@ const Home = () => {
             </ul>
           </div>
           <div>
-          <h1 className="text-blue-700 text-center text-xl my-2">Incomplete</h1>
+            <h1 className="text-blue-700 text-center text-xl my-2">
+              Incomplete ({total})
+            </h1>
 
             <div className="bg-base-200 drop-shadow-2xl ">
               {tasks?.map((task) => (
