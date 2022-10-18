@@ -48,7 +48,7 @@ const CompletedTasks = () => {
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            swal("Success", "Company Deleted Successfully", "success");
+            swal("Success", "Task Deleted Successfully", "success");
           });
       }
     });

@@ -47,7 +47,7 @@ const Home = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          swal("Yayy", "Company Added Successfully", "success");
+          swal("Yayy", "Task Added Successfully", "success");
         });
     }
     e.target.reset();
@@ -92,19 +92,7 @@ const Home = () => {
   }
   refetch();
 
-  // const handleEdit = (e) => {
-  //   if (e.target.task.value) {
-  //     fetch(" https://smart-tasks-server-production.up.railway.app/addTask", {
-  //       method: "PATCH",
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //         swal("Yayy", "Company Added Successfully", "success");
-  //       });
-  //   }
-  //   e.target.reset();
-  // };
+  
   const total = tasks?.length;
   return (
     <div>

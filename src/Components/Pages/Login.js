@@ -52,7 +52,7 @@ const Login = () => {
   return (
     <div>
       <div className="grid lg:grid-cols-2 grid-cols-1 ">
-        <img className="items-center m-auto" src={image} alt="" />
+        <img className="items-center m-auto  lg:block hidden " src={image} alt="" />
         <div className="flex justify-center items-center h-screen  ">
           <div className=" hidden lg:block">
             <img alt="" />
