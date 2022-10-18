@@ -153,7 +153,7 @@ const Home = () => {
             </form>
           </ul>
         </div>
-        <div className="w-96 bg-base-200 drop-shadow-2xl mt-5">
+        <div className=" bg-base-200 drop-shadow-2xl mt-5">
           {tasks?.map((task) => (
             <>
               <div className="flex ">
