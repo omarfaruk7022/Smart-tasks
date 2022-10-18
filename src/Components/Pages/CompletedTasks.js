@@ -14,9 +14,12 @@ const CompletedTasks = () => {
     isLoading,
     refetch,
   } = useQuery("completedTasks", () =>
-    fetch(` http://localhost:5000/completedTask/${email}`, {
-      method: "GET",
-    })
+    fetch(
+      ` https://smart-tasks-server-production.up.railway.app/completedTask/${email}`,
+      {
+        method: "GET",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         return data;
@@ -36,9 +39,12 @@ const CompletedTasks = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(` http://localhost:5000/completedTask/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          ` https://smart-tasks-server-production.up.railway.app/completedTask/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);

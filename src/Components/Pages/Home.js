@@ -37,7 +37,7 @@ const Home = () => {
       taskTime,
     };
     if (addingTask) {
-      fetch(" http://localhost:5000/addTask", {
+      fetch(" https://smart-tasks-server-production.up.railway.app/addTask", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -53,13 +53,16 @@ const Home = () => {
     e.target.reset();
   };
   const handleComplete = (id, task) => {
-    fetch(` http://localhost:5000/completedTask/${id}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(task),
-    })
+    fetch(
+      ` https://smart-tasks-server-production.up.railway.app/completedTask/${id}`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(task),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -72,9 +75,12 @@ const Home = () => {
     isLoading,
     refetch,
   } = useQuery("tasks", () =>
-    fetch(` http://localhost:5000/addTask/${email}`, {
-      method: "GET",
-    })
+    fetch(
+      ` https://smart-tasks-server-production.up.railway.app/addTask/${email}`,
+      {
+        method: "GET",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         return data;
@@ -88,7 +94,7 @@ const Home = () => {
 
   const handleEdit = (e) => {
     if (e.target.task.value) {
-      fetch(" http://localhost:5000/addTask", {
+      fetch(" https://smart-tasks-server-production.up.railway.app/addTask", {
         method: "PATCH",
       })
         .then((res) => res.json())

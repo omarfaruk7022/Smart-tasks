@@ -9,13 +9,16 @@ const EditTask = (task) => {
     const editedData = {
       addingTask: editTask,
     };
-    fetch(` http://localhost:5000/addTask/${_id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(editedData),
-    })
+    fetch(
+      ` https://smart-tasks-server-production.up.railway.app/addTask/${_id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(editedData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
