@@ -49,14 +49,14 @@ const EditTask = (task) => {
         </label>
         <ul
           tabIndex={0}
-          className="dropdown-content dropdown-start menu p-2 shadow bg-base-100 rounded-box w-36"
+          className="dropdown-content ml-[-150px] mb-[200px] menu p-2 shadow bg-base-100 rounded-box w-36"
         >
           <form onSubmit={handleEdit}>
-            <div class="relative z-0 mb-6 w-full group flex">
+            <div class="relative z-3 mb-6 w-full group flex">
               <input
                 type="text"
                 name="task"
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-green-500  peer"
+                class="block  py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-green-500  peer"
                 placeholder=" "
                 required
                 // defaultValue={addingTask}
