@@ -107,8 +107,8 @@ const Home = () => {
   };
 
   return (
-    <div className="grid lg:grid-cols-4 grid-cols-1">
-      <div className="lg:px-12 sm:px-0">
+    <div className="grid lg:grid-cols-4 grid-cols-1 lg:px-12 lg:gap-5">
+      <div className=" sm:px-0">
         <div className="dropdown flex">
           <label tabIndex={0} className="hover:text-blue-500">
             <span className="text-xl  hover:rounded-full ml-5">+</span>{" "}
@@ -118,7 +118,7 @@ const Home = () => {
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu  shadow bg-base-100 rounded-box "
+            className="dropdown-content shadow bg-base-100 rounded-box"
           >
             <form onSubmit={handleCorrect}>
               <div class="relative z-0 mb-6 w-full group flex">
@@ -173,8 +173,8 @@ const Home = () => {
                     />
                   </svg>
                 </button>
-                <span className="text-gray-500 mt-3">
-                  <td className=" py-2  whitespace-nowrap">
+                <span className="text-gray-500 mt-3 ">
+                  <td className=" py-2 whitespace-nowrap ">
                     <div className="group ">
                       <p>
                         {task?.addingTask.slice(0, 20)}
@@ -184,7 +184,7 @@ const Home = () => {
                           </>
                         )}
                       </p>
-                      <span className="absolute z-50 hidden px-6 py-2 -mt-16 text-center text-black  bg-base-100 border  rounded tooltip-text group-hover:block">
+                      <span className="absolute z-50 hidden  py-2 -mt-16 text-center text-black  bg-base-100 border  rounded tooltip-text group-hover:block">
                         {task?.addingTask.slice()}
                       </span>
                     </div>
@@ -195,7 +195,7 @@ const Home = () => {
                 </p>
                 <EditTask task={task} />
 
-                <div className="dropdown flex">
+                {/* <div className="dropdown flex">
                   <ul
                     tabIndex={0}
                     className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
@@ -232,13 +232,12 @@ const Home = () => {
                       </div>
                     </form>
                   </ul>
-                </div>
+                </div> */}
               </div>
             </>
           ))}
         </div>
-        <div>
-        </div>
+       
       </div>
           <CompletedTasks />
     </div>
