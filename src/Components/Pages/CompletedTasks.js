@@ -6,6 +6,7 @@ import auth from "../../firebase.init";
 import Loader from "../Shared/Loader";
 import { BsCheck2Circle } from "react-icons/bs";
 
+
 const CompletedTasks = () => {
   const [user] = useAuthState(auth);
   const email = user?.email;
@@ -26,9 +27,9 @@ const CompletedTasks = () => {
       })
   );
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
   refetch();
   const handleDelete = (id) => {
     swal({
@@ -49,11 +50,12 @@ const CompletedTasks = () => {
           .then((data) => {
             console.log(data);
             swal("Success", "Task Deleted Successfully", "success");
+            
           });
       }
     });
   };
-  const total = completedTasks.length;
+  const total = completedTasks?.length;
   return (
     <div className="mt-7">
       <h1 className="text-green-400 text-center text-xl my-2">Completed ({total})</h1>
@@ -69,7 +71,7 @@ const CompletedTasks = () => {
                   <BsCheck2Circle />
                 </div>
                 <span className=" p-5">
-                  <td className=" py-2  whitespace-nowrap">
+                  <td className=" py-2 whitespace-nowrap">
                     <div className="group">
                       <p>
                         {completedTask?.addingTask.slice(0, 20)}
@@ -109,10 +111,12 @@ const CompletedTasks = () => {
                   </svg>
                 </button>
               </h1>
+              
             </>
           ))}
         </div>
       </div>
+      
     </div>
   );
 };

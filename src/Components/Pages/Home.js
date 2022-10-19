@@ -9,6 +9,7 @@ import Loader from "../Shared/Loader";
 import CompletedTasks from "./CompletedTasks";
 import EditTask from "./EditTask";
 
+
 const Home = () => {
   const [user] = useAuthState(auth);
   const email = user?.email;
@@ -47,7 +48,7 @@ const Home = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          swal("Yayy", "Task Added Successfully", "success");
+          swal("Success", "Task Added Successfully", "success");
         });
     }
     e.target.reset();
@@ -87,12 +88,11 @@ const Home = () => {
       })
   );
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
   refetch();
 
-  
   const total = tasks?.length;
   return (
     <div>
@@ -152,22 +152,45 @@ const Home = () => {
                 <>
                   <div className="flex ">
                     <button onClick={() => handleComplete(task?._id, task)}>
-                      <svg
+                      {/* <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6 hover:text-green-500 cursor-pointer mx-2 hover:scale-125 ease-out duration-200"
+                        class="w-6 h-6 hover:text-green-500 cursor-pointer mx-2 hover:scale-125 ease-out duration-200 "
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M4.5 12.75l6 6 9-13.5"
+                        />
+                      </svg> */}
+                      <div class="flex items-center">
+                        <input
+                          id="link-radio"
+                          type="radio"
+                          value=""
+                          class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300  hover:text-green-500 cursor-pointer mx-2 hover:scale-125 ease-out duration-200 "
+                        />
+                      </div>
+
+                      {/* <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-6 h-6 hover:text-green-500 cursor-pointer mx-2 hover:scale-125 ease-out duration-200 "
                       >
                         <path
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
-                      </svg>
+                      </svg> */}
                     </button>
-                    <span className="text-gray-500 mt-3 ">
+                    <span className=" p-5">
                       <td className=" py-2 whitespace-nowrap ">
                         <div className="group ">
                           <p>
@@ -184,7 +207,7 @@ const Home = () => {
                         </div>
                       </td>
                     </span>
-                    <p className="text-[12px] lg:mt-1.5  lg:mr-2 p-5">
+                    <p className="text-[12px] lg:mt-4  lg:mr-2 p-5">
                       {task?.taskTime}, {task?.taskDate}
                     </p>
                     <EditTask task={task} />

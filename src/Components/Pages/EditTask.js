@@ -38,7 +38,7 @@ const EditTask = (task) => {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-5 h-5 text-blue-400 cursor-pointer hover:scale-125 ease-out duration-200 transform hover:text-blue-500"
+            class="w-5 h-5 text-blue-700 mt-3.5 cursor-pointer hover:scale-125 ease-out duration-200 ml-auto"
           >
             <path
               stroke-linecap="round"
